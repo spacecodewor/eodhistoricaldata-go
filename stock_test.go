@@ -19,7 +19,19 @@ func TestQuote(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 
-	_, err = APIClient.Stock.Quote("AAPL")
+	_, err = APIClient.Stock.Quote("US30Y.INDX")
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+}
+
+func TestEOD(t *testing.T) {
+	APIClient, err := NewAPIClient(testCaseAPIConfig)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	_, err = APIClient.Stock.EOD("NQ.INDX", "w", nil, nil)
 	if err != nil {
 		t.Fatal(err.Error())
 	}
