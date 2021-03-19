@@ -22,14 +22,15 @@ type Config struct {
 
 // APIClient ...
 type APIClient struct {
-	Stock  *Stock
-	Logger *zap.Logger
-	Debug  bool
+	Stock    *Stock
+	Exchange *Exchange
+	Logger   *zap.Logger
+	Debug    bool
 }
 
 // Core params
 const (
-	APIURL            = "https://eodhistoricaldata.com/api/"
+	APIURL            = "https://eodhistoricaldata.com/api"
 	apiDefaultToken   = "demo"
 	fmtFromat         = "json"
 	apiDefaultTimeout = 25
@@ -92,6 +93,7 @@ func NewAPIClient(cfg Config) (*APIClient, error) {
 	}
 
 	APIClient.Stock = &Stock{Client: HTTPClient}
+	APIClient.Exchange = &Exchange{Client: HTTPClient}
 
 	return APIClient, nil
 }

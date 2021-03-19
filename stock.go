@@ -11,8 +11,8 @@ import (
 
 // Url const for request
 const (
-	urlAPIQuote = "real-time/%s"
-	urlAPIEOD   = "eod/%s"
+	urlAPIQuote = "/real-time/%s"
+	urlAPIEOD   = "/eod/%s"
 )
 
 // Stock client
