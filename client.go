@@ -11,6 +11,7 @@ import (
 
 // Config for create new API client
 type Config struct {
+	HTTPClient    *resty.Client
 	Logger        *zap.Logger
 	APIToken      string
 	FMTFromat     string
@@ -62,13 +63,16 @@ func NewAPIClient(cfg Config) (*APIClient, error) {
 	}
 
 	// Init rest client (resty)
-	restClient := resty.New()
-	restClient.SetDebug(APIClient.Debug)
-	restClient.SetTimeout(time.Duration(cfg.Timeout) * time.Second)
-	restClient.SetHostURL(APIURL)
+	if cfg.HTTPClient == nil {
+		cfg.HTTPClient = resty.New()
+	}
+
+	cfg.HTTPClient.SetDebug(APIClient.Debug)
+	cfg.HTTPClient.SetTimeout(time.Duration(cfg.Timeout) * time.Second)
+	cfg.HTTPClient.SetHostURL(APIURL)
 
 	HTTPClient := &HTTPClient{
-		client:    restClient,
+		client:    cfg.HTTPClient,
 		apiToken:  cfg.APIToken,
 		fmtFromat: cfg.FMTFromat,
 		logger:    APIClient.Logger,
