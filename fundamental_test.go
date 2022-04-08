@@ -10,10 +10,8 @@ func TestProfile(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 
-	p, err := APIClient.Fundamental.Profile("DJI.INDX")
+	_, err = APIClient.Fundamental.Profile("DJI.INDX")
 	if err != nil {
 		t.Fatal(err.Error())
 	}
-
-	t.Log(p)
 }
