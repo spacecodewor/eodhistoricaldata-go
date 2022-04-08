@@ -1,4 +1,4 @@
-package fmpcloud
+package eodhistoricaldata
 
 import (
 	"encoding/json"

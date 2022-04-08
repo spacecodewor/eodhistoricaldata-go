@@ -1,4 +1,4 @@
-package fmpcloud
+package eodhistoricaldata
 
 import (
 	"time"
@@ -23,10 +23,11 @@ type Config struct {
 
 // APIClient ...
 type APIClient struct {
-	Stock    *Stock
-	Exchange *Exchange
-	Logger   *zap.Logger
-	Debug    bool
+	Stock       *Stock
+	Exchange    *Exchange
+	Fundamental *Fundamental
+	Logger      *zap.Logger
+	Debug       bool
 }
 
 // Core params
@@ -98,6 +99,7 @@ func NewAPIClient(cfg Config) (*APIClient, error) {
 
 	APIClient.Stock = &Stock{Client: HTTPClient}
 	APIClient.Exchange = &Exchange{Client: HTTPClient}
+	APIClient.Fundamental = &Fundamental{Client: HTTPClient}
 
 	return APIClient, nil
 }
