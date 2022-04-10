@@ -1,5 +1,7 @@
 package objects
 
+import "time"
+
 // ExchangeDetail ...
 type ExchangeDetail struct {
 	Name             string      `json:"name"`
@@ -39,4 +41,14 @@ type Symbol struct {
 	Exchange string `json:"exchange"`
 	Currency string `json:"currency"`
 	Type     string `json:"type"`
+}
+
+// News ...
+type News struct {
+	Date    time.Time `json:"date"`
+	Title   string    `json:"title"`
+	Content string    `json:"content"`
+	Link    string    `json:"link"`
+	Symbols []string  `json:"symbols"`
+	Tags    []string  `json:"tags"`
 }
